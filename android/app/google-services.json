@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "973147448820",
+    "project_id": "pizzatopia-9ef7a",
+    "storage_bucket": "pizzatopia-9ef7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973147448820:android:6b5bde374b60bf508005a1",
+        "android_client_info": {
+          "package_name": "com.example.pizzatopia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8gaV8OOEi2shAs8w9hSwhGFzU66P7gpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
