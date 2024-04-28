@@ -1,15 +1,24 @@
 name: pizzatopia
 description: A simple pizza application.
 publish_to: 'none'
-version: 0.0.1
+version: 0.1.0
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
+
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+
+  firebase_core: ^2.16.0 
+
+  bloc: ^8.1.2
   flutter_bloc: ^8.1.5
+  equatable: ^2.0.5
+  cupertino_icons: ^1.0.2
+
+  user_repository:
+    path: packages/user_repository
 
 dev_dependencies:
   flutter_test:
