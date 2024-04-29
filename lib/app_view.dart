@@ -24,6 +24,11 @@ class MyAppView extends StatelessWidget {
           )),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
+        if (state.status == AuthenticationStatus.unknown) {
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
+        }
         if (state.status == AuthenticationStatus.authenticated) {
           return BlocProvider(
             create: (context) =>

@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
               width: 8,
             ),
             const Text(
-              'PIZZA',
+              'Pizzatopia',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 30,
