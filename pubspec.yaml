@@ -20,6 +20,8 @@ dependencies:
 
   user_repository:
     path: packages/user_repository
+  pizza_repository:
+    path: packages/pizza_repository
 
 dev_dependencies:
   flutter_test:

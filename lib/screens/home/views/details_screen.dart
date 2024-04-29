@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pizzatopia/components/macro.dart';
+import 'package:pizza_repository/pizza_repository.dart';
+import '../../../components/macro.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+  final Pizza pizza;
+  const DetailsScreen(this.pizza, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,35 +22,24 @@ class DetailsScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width - (40),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(3, 3),
-                    blurRadius: 5,
-                  )
-                ],
-                image: const DecorationImage(
-                  image: AssetImage('assets/1.png'),
-                ),
-              ),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.grey, offset: Offset(3, 3), blurRadius: 5)
+                  ],
+                  image: DecorationImage(image: NetworkImage(pizza.picture))),
             ),
             const SizedBox(
               height: 30,
             ),
             Container(
-              width: MediaQuery.of(context).size.width,
-              // height: MediaQuery.of(context).size.width - (40),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(3, 3),
-                    blurRadius: 5,
-                  )
+                      color: Colors.grey, offset: Offset(3, 3), blurRadius: 5)
                 ],
               ),
               child: Padding(
@@ -59,76 +49,76 @@ class DetailsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Expanded(
-                          flex: 4,
+                        Expanded(
+                          flex: 2,
                           child: Text(
-                            'Truffle Temptation Extravangaza',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            pizza.name,
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Expanded(
                           flex: 1,
                           child: Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.centerRight,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  '\$12.00',
+                                  "\$${pizza.price - (pizza.price * (pizza.discount) / 100)}",
                                   style: TextStyle(
-                                    fontSize: 20,
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                                 ),
-                                // SizedBox(
-                                //   height: 16,
-                                // ),
-                                const Text(
-                                  '\$15.00',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
+                                Text(
+                                  "\$${pizza.price}.00",
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey,
+                                      decoration: TextDecoration.lineThrough),
                                 ),
                               ],
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                     const SizedBox(
                       height: 12,
                     ),
-                    const Row(
+                    Row(
                       children: [
                         MyMacroWidget(
-                          title: 'Calories',
-                          value: 467,
+                          title: "Calories",
+                          value: pizza.macros.calories,
                           icons: FontAwesomeIcons.fire,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         MyMacroWidget(
-                          title: 'Protien',
-                          value: 36,
+                          title: "Protein",
+                          value: pizza.macros.proteins,
                           icons: FontAwesomeIcons.dumbbell,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         MyMacroWidget(
-                          title: 'Fat',
-                          value: 21,
+                          title: "Fat",
+                          value: pizza.macros.fat,
                           icons: FontAwesomeIcons.oilWell,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         MyMacroWidget(
-                          title: 'Carbs',
-                          value: 38,
+                          title: "Carbs",
+                          value: pizza.macros.carbs,
                           icons: FontAwesomeIcons.breadSlice,
                         ),
                       ],
@@ -140,29 +130,26 @@ class DetailsScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 50,
                       child: TextButton(
-                        style: TextButton.styleFrom(
-                          elevation: 3.0,
-                          backgroundColor: Colors.black,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
                         onPressed: () {},
+                        style: TextButton.styleFrom(
+                            elevation: 3.0,
+                            backgroundColor: Colors.black,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10))),
                         child: const Text(
-                          'Buy Now',
+                          "Buy Now",
                           style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                     )
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
